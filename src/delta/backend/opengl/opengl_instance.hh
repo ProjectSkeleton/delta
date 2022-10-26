@@ -6,6 +6,8 @@ namespace Delta {
 
 class OpenGlInstance : public Instance {
 public:
+  OpenGlInstance();
+
   virtual std::unique_ptr<Window> CreateWindow() override;
 };
 

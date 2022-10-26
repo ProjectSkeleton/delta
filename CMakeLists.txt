@@ -43,11 +43,17 @@ if (WIN32)
 endif()
 
 set(DELTA_SRC_DELTA_FILES
-  src/delta/delta/instance.hh
+  src/delta/delta/instance.hh src/delta/delta/instance.cc
   src/delta/delta/render_target.hh
   src/delta/delta/window.hh
 )
 source_group("delta/src/delta" FILES ${DELTA_SRC_DELTA_FILES})
+
+set(DELTA_SRC_DELTA_UTILS_FILES
+  src/delta/delta/utils/exceptions.hh
+  src/delta/delta/utils/logger.hh src/delta/delta/utils/logger.cc
+)
+source_group("delta/src/delta/utils" FILES ${DELTA_SRC_DELTA_UTILS_FILES})
 
 add_library(${PROJECT_NAME}
   ${DELTA_SRC_FILES}
@@ -58,7 +64,7 @@ add_library(${PROJECT_NAME}
   ${DELTA_SRC_BACKEND_VULKAN_FILES}
   ${DELTA_SRC_BACKEND_WINDOWS_FILES}
   ${DELTA_SRC_DELTA_FILES}
-  ${DELTA_SRC_UTILS_FILES}
+  ${DELTA_SRC_DELTA_UTILS_FILES}
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC src)

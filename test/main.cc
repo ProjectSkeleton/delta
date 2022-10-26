@@ -1,7 +1,7 @@
 #include <delta/delta.hh>
 
 int main() {
-  auto instance = std::make_unique<Delta::DirectX11Instance>();
+  auto instance = Delta::CreateInstance(Delta::Backend::kOpenGl);
 
   auto window = instance->CreateWindow();
   while (window->IsOpen()) {
