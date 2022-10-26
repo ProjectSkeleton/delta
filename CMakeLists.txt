@@ -1,19 +1,64 @@
 cmake_minimum_required(VERSION 3.0)
 project(delta)
 
-set(DELTA_SRC_FILES 
-  src/delta/delta.hh src/delta/delta.cc
+set(DELTA_SRC_FILES
+  src/delta/delta.hh
 )
 source_group("delta/src" FILES ${DELTA_SRC_FILES})
 
-set(DELTA_SRC_BACKEND_FILES 
+set(DELTA_SRC_BACKEND_FILES
   src/delta/backend/backend.hh
 )
 source_group("delta/src/backend" FILES ${DELTA_SRC_BACKEND_FILES})
 
+if (WIN32)
+  set(DELTA_SRC_BACKEND_DIRECTX11_FILES
+    src/delta/backend/directx11/directx11_instance.hh src/delta/backend/directx11/directx11_instance.cc
+  )
+  source_group("delta/src/backend/directx11" FILES ${DELTA_SRC_BACKEND_DIRECTX11_FILES})
+endif()
+
+set(DELTA_SRC_BACKEND_GLFW_FILES
+  src/delta/backend/glfw/glfw_window.hh src/delta/backend/glfw/glfw_window.cc
+)
+source_group("delta/src/backend/glfw" FILES ${DELTA_SRC_BACKEND_GLFW_FILES})
+
+set(DELTA_SRC_BACKEND_OPENGL_FILES
+  src/delta/backend/opengl/opengl_instance.hh src/delta/backend/opengl/opengl_instance.cc
+  src/delta/backend/opengl/opengl_window.hh src/delta/backend/opengl/opengl_window.cc
+)
+source_group("delta/src/backend/opengl" FILES ${DELTA_SRC_BACKEND_OPENGL_FILES})
+
+set(DELTA_SRC_BACKEND_VULKAN_FILES
+  src/delta/backend/vulkan/vulkan_instance.hh src/delta/backend/vulkan/vulkan_instance.cc
+  src/delta/backend/vulkan/vulkan_window.hh src/delta/backend/vulkan/vulkan_window.cc
+)
+source_group("delta/src/backend/vulkan" FILES ${DELTA_SRC_BACKEND_VULKAN_FILES})
+
+if (WIN32)
+  set(DELTA_SRC_BACKEND_WINDOWS_FILES
+    src/delta/backend/windows/windows_window.hh src/delta/backend/windows/windows_window.cc
+  )
+  source_group("delta/src/backend/windows" FILES ${DELTA_SRC_BACKEND_WINDOWS_FILES})
+endif()
+
+set(DELTA_SRC_DELTA_FILES
+  src/delta/delta/instance.hh
+  src/delta/delta/render_target.hh
+  src/delta/delta/window.hh
+)
+source_group("delta/src/delta" FILES ${DELTA_SRC_DELTA_FILES})
+
 add_library(${PROJECT_NAME}
   ${DELTA_SRC_FILES}
   ${DELTA_SRC_BACKEND_FILES}
+  ${DELTA_SRC_BACKEND_DIRECTX11_FILES}
+  ${DELTA_SRC_BACKEND_GLFW_FILES}
+  ${DELTA_SRC_BACKEND_OPENGL_FILES}
+  ${DELTA_SRC_BACKEND_VULKAN_FILES}
+  ${DELTA_SRC_BACKEND_WINDOWS_FILES}
+  ${DELTA_SRC_DELTA_FILES}
+  ${DELTA_SRC_UTILS_FILES}
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC src)

@@ -1,5 +1,13 @@
 #include <delta/delta.hh>
 
 int main() {
-  Delta::Instance instance(Delta::Backend::kOpenGL);
+  auto instance = std::make_unique<Delta::DirectX11Instance>();
+
+  auto window = instance->CreateWindow();
+  while (window->IsOpen()) {
+    // Poll input
+    // Begin render pass (window)
+    // Render geometry
+    // End render pass
+  }
 }
