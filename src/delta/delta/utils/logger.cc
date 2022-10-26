@@ -11,7 +11,9 @@ Logger::Logger() : min_severity_(LogSeverity::kTrace) {
 }
 
 void Logger::Log(LogSeverity severity, const char* msg) {
-  on_log_(msg);
+  if (severity >= min_severity_) {
+    on_log_(msg);
+  }
 }
 
 void Logger::SetCallback(std::function<void(const char*)> on_log) {
