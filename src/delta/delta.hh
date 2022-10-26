@@ -1,5 +1,12 @@
 #pragma once
 
+#include "delta/backend/backend.hh"
+
 namespace Delta {
-  void DoSomething();
+
+class Instance {
+public:
+  Instance(Backend preferred_backend);
+};
+
 }

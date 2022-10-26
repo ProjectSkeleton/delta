@@ -1,10 +1,20 @@
 cmake_minimum_required(VERSION 3.0)
 project(delta)
 
-set(DELTA_SRC_FILES src/delta/delta.hh src/delta/delta.cc)
+set(DELTA_SRC_FILES 
+  src/delta/delta.hh src/delta/delta.cc
+)
 source_group("delta/src" FILES ${DELTA_SRC_FILES})
 
-add_library(${PROJECT_NAME} ${DELTA_SRC_FILES})
+set(DELTA_SRC_BACKEND_FILES 
+  src/delta/backend/backend.hh
+)
+source_group("delta/src/backend" FILES ${DELTA_SRC_BACKEND_FILES})
+
+add_library(${PROJECT_NAME}
+  ${DELTA_SRC_FILES}
+  ${DELTA_SRC_BACKEND_FILES}
+)
 
 target_include_directories(${PROJECT_NAME} PUBLIC src)
 

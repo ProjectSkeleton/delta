@@ -1,5 +1,5 @@
 #include <delta/delta.hh>
 
 int main() {
-  Delta::DoSomething();
+  Delta::Instance instance(Delta::Backend::kOpenGL);
 }
