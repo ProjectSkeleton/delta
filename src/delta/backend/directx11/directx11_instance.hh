@@ -8,7 +8,7 @@ class DirectX11Instance : public Instance {
 public:
   DirectX11Instance();
 
-  virtual std::unique_ptr<Window> CreateWindow() override;
+  virtual std::unique_ptr<Window> CreateWindow(const WindowCreateInfo& window_info) override;
 };
 
 }

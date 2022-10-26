@@ -2,4 +2,7 @@
 
 namespace Delta {
 
+VulkanWindow::VulkanWindow(const WindowCreateInfo& window_info) {
+}
+
 }

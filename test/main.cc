@@ -1,11 +1,11 @@
 #include <delta/delta.hh>
 
 int main() {
-  auto instance = Delta::CreateInstance(Delta::Backend::kOpenGl);
+  auto instance = Delta::CreateInstance();
 
   auto window = instance->CreateWindow();
   while (window->IsOpen()) {
-    // Poll input
+    window->PollEvents();
     // Begin render pass (window)
     // Render geometry
     // End render pass

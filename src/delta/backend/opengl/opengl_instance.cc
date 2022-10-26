@@ -6,11 +6,10 @@
 namespace Delta {
 
 OpenGlInstance::OpenGlInstance() {
-  throw InstanceCreateException("OpenGl not yet supported");
 }
 
-std::unique_ptr<Window> OpenGlInstance::CreateWindow() {
-  return std::move(std::make_unique<OpenGlWindow>());
+std::unique_ptr<Window> OpenGlInstance::CreateWindow(const WindowCreateInfo& window_info) {
+  return std::move(std::make_unique<OpenGlWindow>(window_info));
 }
 
 }

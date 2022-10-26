@@ -10,7 +10,7 @@ namespace Delta {
 
 class Instance {
 public:
-  virtual std::unique_ptr<Window> CreateWindow() = 0;
+  virtual std::unique_ptr<Window> CreateWindow(const WindowCreateInfo& window_info = {}) = 0;
 
 private:
   Logger logger_;

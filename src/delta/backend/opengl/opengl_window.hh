@@ -5,6 +5,8 @@
 namespace Delta {
 
 class OpenGlWindow : public GlfwWindow {
+public:
+  OpenGlWindow(const WindowCreateInfo& window_info);
 };
 
 }

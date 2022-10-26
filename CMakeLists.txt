@@ -85,6 +85,9 @@ if(Vulkan_FOUND)
   target_compile_definitions(${PROJECT_NAME} PUBLIC DELTA_HAS_VULKAN)
 endif()
 
+add_subdirectory(src/depend/glfw)
+target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
+
 if (PROJECT_IS_TOP_LEVEL)
   add_subdirectory(test)
 

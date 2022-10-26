@@ -8,7 +8,7 @@ class VulkanInstance : public Instance {
 public:
   VulkanInstance();
 
-  virtual std::unique_ptr<Window> CreateWindow() override;
+  virtual std::unique_ptr<Window> CreateWindow(const WindowCreateInfo& window_info) override;
 };
 
 }

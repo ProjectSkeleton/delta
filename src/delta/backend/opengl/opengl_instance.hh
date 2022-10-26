@@ -8,7 +8,7 @@ class OpenGlInstance : public Instance {
 public:
   OpenGlInstance();
 
-  virtual std::unique_ptr<Window> CreateWindow() override;
+  virtual std::unique_ptr<Window> CreateWindow(const WindowCreateInfo& window_info) override;
 };
 
 }

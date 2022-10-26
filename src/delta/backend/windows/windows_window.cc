@@ -2,8 +2,14 @@
 
 namespace Delta {
 
+WindowsWindow::WindowsWindow(const WindowCreateInfo& window_info) {
+}
+
 bool WindowsWindow::IsOpen() const {
   return true;
+}
+
+void WindowsWindow::PollEvents() {
 }
 
 }
