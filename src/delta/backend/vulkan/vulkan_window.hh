@@ -7,6 +7,10 @@ namespace Delta {
 class VulkanWindow : public GlfwWindow {
 public:
   VulkanWindow(const WindowCreateInfo& window_info);
+
+public:
+  virtual void OnRenderPassBegin() override;
+  virtual void OnRenderPassComplete() override;
 };
 
 }

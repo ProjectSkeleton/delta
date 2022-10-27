@@ -12,4 +12,10 @@ bool WindowsWindow::IsOpen() const {
 void WindowsWindow::PollEvents() {
 }
 
+void WindowsWindow::OnRenderPassBegin() {
+}
+
+void WindowsWindow::OnRenderPassComplete() {
+}
+
 }

@@ -27,7 +27,6 @@ bool GlfwWindow::IsOpen() const {
 }
 
 void GlfwWindow::PollEvents() {
-  // This polls events for all windows
   glfwPollEvents();
 }
 

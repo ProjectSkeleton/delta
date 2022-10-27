@@ -9,8 +9,12 @@ VulkanInstance::VulkanInstance() {
   throw InstanceCreateException("Vulkan not yet supported");
 }
 
-std::unique_ptr<Window> VulkanInstance::CreateWindow(const WindowCreateInfo& window_info) {
-  return std::move(std::make_unique<VulkanWindow>(window_info));
+std::shared_ptr<Window> VulkanInstance::CreateWindow(const WindowCreateInfo& window_info) {
+  return std::make_shared<VulkanWindow>(window_info);
+}
+
+std::shared_ptr<RenderPass> VulkanInstance::CreateRenderPass(const std::shared_ptr<RenderTarget>& render_target) {
+  return nullptr;
 }
 
 }

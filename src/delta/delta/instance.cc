@@ -16,7 +16,7 @@
 
 namespace Delta {
 
-std::unique_ptr<Instance> CreateInstance(Backend preferred_backend) {
+std::shared_ptr<Instance> CreateInstance(Backend preferred_backend) {
 #if defined(_WIN32)
   if (preferred_backend == Backend::kNone) { preferred_backend = Backend::kDirectX11; }
 #elif defined(__APPLE__)
@@ -42,14 +42,14 @@ std::unique_ptr<Instance> CreateInstance(Backend preferred_backend) {
   while (!possible_backends.empty()) {
     try {
       switch (current_backend) {
-        case Backend::kOpenGl: return std::make_unique<OpenGlInstance>();
+        case Backend::kOpenGl: return std::make_shared<OpenGlInstance>();
 #if defined(DELTA_HAS_VULKAN)
-        case Backend::kVulkan: return std::make_unique<VulkanInstance>();
+        case Backend::kVulkan: return std::make_shared<VulkanInstance>();
 #endif
 #if defined(_WIN32)
-        case Backend::kDirectX11: return std::make_unique<DirectX11Instance>();
+        case Backend::kDirectX11: return std::make_shared<DirectX11Instance>();
 #elif defined(__APPLE__)
-        case Backend::kMetal: return std::make_unique<MetalInstance>();
+        case Backend::kMetal: return std::make_shared<MetalInstance>();
 #endif
       }
     }

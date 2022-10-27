@@ -34,6 +34,7 @@ endif()
 
 set(DELTA_SRC_BACKEND_OPENGL_FILES
   src/delta/backend/opengl/opengl_instance.hh src/delta/backend/opengl/opengl_instance.cc
+  src/delta/backend/opengl/opengl_render_pass.hh src/delta/backend/opengl/opengl_render_pass.cc
   src/delta/backend/opengl/opengl_window.hh src/delta/backend/opengl/opengl_window.cc
 )
 source_group("delta/src/backend/opengl" FILES ${DELTA_SRC_BACKEND_OPENGL_FILES})
@@ -54,11 +55,20 @@ if (WIN32)
 endif()
 
 set(DELTA_SRC_DELTA_FILES
+  src/delta/delta/color.hh src/delta/delta/color.cc
   src/delta/delta/instance.hh src/delta/delta/instance.cc
   src/delta/delta/render_target.hh
   src/delta/delta/window.hh
 )
 source_group("delta/src/delta" FILES ${DELTA_SRC_DELTA_FILES})
+
+set(DELTA_SRC_DELTA_RENDER_PASS_FILES
+  src/delta/delta/render_pass/immediate_mode_render_pass_command_buffer.hh
+  src/delta/delta/render_pass/immediate_mode_render_pass.hh src/delta/delta/render_pass/immediate_mode_render_pass.cc
+  src/delta/delta/render_pass/render_pass_opcode.hh
+  src/delta/delta/render_pass/render_pass.hh
+)
+source_group("delta/src/delta/render_pass" FILES ${DELTA_SRC_DELTA_RENDER_PASS_FILES})
 
 set(DELTA_SRC_DELTA_UTILS_FILES
   src/delta/delta/utils/exceptions.hh
@@ -76,6 +86,7 @@ add_library(${PROJECT_NAME}
   ${DELTA_SRC_BACKEND_VULKAN_FILES}
   ${DELTA_SRC_BACKEND_WINDOWS_FILES}
   ${DELTA_SRC_DELTA_FILES}
+  ${DELTA_SRC_DELTA_RENDER_PASS_FILES}
   ${DELTA_SRC_DELTA_UTILS_FILES}
 )
 
@@ -85,6 +96,8 @@ if(Vulkan_FOUND)
   target_compile_definitions(${PROJECT_NAME} PUBLIC DELTA_HAS_VULKAN)
 endif()
 
+add_subdirectory(src/depend/glad)
+target_link_libraries(${PROJECT_NAME} PRIVATE glad)
 add_subdirectory(src/depend/glfw)
 target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
 
