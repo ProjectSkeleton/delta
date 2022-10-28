@@ -43,6 +43,32 @@ ShaderDataType FindShaderInputVectorType(uint32_t size) {
   }
 }
 
+// TODO: This function is not bulletproof and needs further testing
+ShaderDataType FindUniformMemberType(const spirv_cross::SPIRType& type) {
+  switch (type.basetype) {
+    case spirv_cross::SPIRType::Float: {
+      switch (type.vecsize) {
+        case 1: return ShaderDataType::kFloat;
+        case 2: return ShaderDataType::kFloat2;
+        case 3: return type.columns == 1 ? ShaderDataType::kFloat3 : ShaderDataType::kMatrix3;
+        case 4: return type.columns == 1 ? ShaderDataType::kFloat4 : ShaderDataType::kMatrix4;
+      }
+      break;
+    }
+    case spirv_cross::SPIRType::Int: {
+      switch (type.vecsize) {
+        case 1: return ShaderDataType::kInt;
+        case 2: return ShaderDataType::kInt2;
+        case 3: return ShaderDataType::kInt3;
+        case 4: return ShaderDataType::kInt4;
+      }
+      break;
+    }
+  }
+
+  return ShaderDataType::kUnknown;
+}
+
 void Shader::PerformReflection(const std::unordered_map<ShaderStage, std::vector<uint32_t>>& code_map) {
   std::unordered_map<size_t, ShaderDataType> vertex_input_map;
 
@@ -60,6 +86,26 @@ void Shader::PerformReflection(const std::unordered_map<ShaderStage, std::vector
         ShaderDataType data_type = FindShaderInputVectorType(type.vecsize);
         vertex_input_map.emplace(location, data_type);
       }
+    }
+
+    // Find uniforms
+    for (auto& uniform : resources->uniform_buffers) {
+      UniformBufferInfo uniform_info;
+      uniform_info.binding = glsl->get_decoration(uniform.id, spv::DecorationBinding);
+      uniform_info.stage = current_stage;
+      uniform_info.size = glsl->get_declared_struct_size(glsl->get_type(uniform.base_type_id));
+      uniform_info.name = glsl->get_name(uniform.id);
+      uniform_info.uniform_block_name = glsl->get_name(uniform.base_type_id);
+
+      std::vector<BufferElement> buffer_elements;
+      for (size_t i = 0; i < glsl->get_type(uniform.base_type_id).member_types.size(); ++i) {
+        BufferElement element(FindUniformMemberType(glsl->get_type(glsl->get_type(uniform.base_type_id).member_types[i])));
+        element.name = glsl->get_member_name(uniform.base_type_id, (uint32_t)i);
+        buffer_elements.push_back(element);
+      }
+      uniform_info.layout = buffer_elements;
+
+      uniform_buffers_.emplace(uniform_info.binding, uniform_info);
     }
 
     delete resources;

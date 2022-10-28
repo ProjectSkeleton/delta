@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <string>
 
 #include "delta/delta/shader/shader_data_type.hh"
 
@@ -12,6 +13,8 @@ struct BufferElement {
   ShaderDataType data_type;
   size_t size;
   size_t offset;
+
+  std::string name;
 
   operator ShaderDataType() { return data_type; }
 };

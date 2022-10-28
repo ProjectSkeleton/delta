@@ -83,6 +83,7 @@ set(DELTA_SRC_DELTA_SHADER_FILES
   src/delta/delta/shader/shader.hh src/delta/delta/shader/shader.cc
   src/delta/delta/shader/shader_data_type.hh src/delta/delta/shader/shader_data_type.cc
   src/delta/delta/shader/shader_stage.hh
+  src/delta/delta/shader/uniform_buffer.hh src/delta/delta/shader/uniform_buffer.cc
 )
 source_group("delta/src/delta/shader" FILES ${DELTA_SRC_DELTA_SHADER_FILES})
 

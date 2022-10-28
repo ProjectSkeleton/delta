@@ -7,8 +7,9 @@
 #include <vector>
 
 #include "delta/delta/render_target.hh"
-#include "delta/delta/shader/shader_stage.hh"
 #include "delta/delta/model/buffer_layout.hh"
+#include "delta/delta/shader/shader_stage.hh"
+#include "delta/delta/shader/uniform_buffer.hh"
 
 namespace Delta {
 
@@ -33,6 +34,7 @@ protected:
 
 protected:
   BufferLayout vertex_input_layout_;
+  std::unordered_map<uint32_t, UniformBuffer> uniform_buffers_;
 };
 
 }
