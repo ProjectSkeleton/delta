@@ -87,6 +87,8 @@ OpenGlShader::OpenGlShader(const ShaderCreateInfo& shader_info) {
 
   auto code_map = LoadSpv(shader_info.spv_paths);
 
+  PerformReflection(code_map);
+
   std::vector<GLuint> shader_modules;
   for (const auto& spv : code_map) {
     spirv_cross::CompilerGLSL compiler(spv.second);

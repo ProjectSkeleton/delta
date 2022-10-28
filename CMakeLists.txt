@@ -34,6 +34,7 @@ endif()
 
 set(DELTA_SRC_BACKEND_OPENGL_FILES
   src/delta/backend/opengl/opengl_instance.hh src/delta/backend/opengl/opengl_instance.cc
+  src/delta/backend/opengl/opengl_mesh.hh src/delta/backend/opengl/opengl_mesh.cc
   src/delta/backend/opengl/opengl_render_pass.hh src/delta/backend/opengl/opengl_render_pass.cc
   src/delta/backend/opengl/opengl_shader.hh src/delta/backend/opengl/opengl_shader.cc
   src/delta/backend/opengl/opengl_window.hh src/delta/backend/opengl/opengl_window.cc
@@ -62,6 +63,13 @@ set(DELTA_SRC_DELTA_FILES
   src/delta/delta/window.hh
 )
 source_group("delta/src/delta" FILES ${DELTA_SRC_DELTA_FILES})
+
+set(DELTA_SRC_DELTA_MODEL_FILES
+src/delta/delta/model/buffer_element.hh
+src/delta/delta/model/buffer_layout.hh src/delta/delta/model/buffer_layout.cc
+src/delta/delta/model/mesh.hh
+)
+source_group("delta/src/delta/model" FILES ${DELTA_SRC_DELTA_MODEL_FILES})
 
 set(DELTA_SRC_DELTA_RENDER_PASS_FILES
   src/delta/delta/render_pass/immediate_mode_render_pass_command_buffer.hh
@@ -94,6 +102,7 @@ add_library(${PROJECT_NAME}
   ${DELTA_SRC_BACKEND_VULKAN_FILES}
   ${DELTA_SRC_BACKEND_WINDOWS_FILES}
   ${DELTA_SRC_DELTA_FILES}
+  ${DELTA_SRC_DELTA_MODEL_FILES}
   ${DELTA_SRC_DELTA_RENDER_PASS_FILES}
   ${DELTA_SRC_DELTA_SHADER_FILES}
   ${DELTA_SRC_DELTA_UTILS_FILES}

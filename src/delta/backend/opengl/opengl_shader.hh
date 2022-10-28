@@ -9,6 +9,7 @@ public:
   OpenGlShader(const ShaderCreateInfo& shader_info);
   ~OpenGlShader();
 
+public:
   void Bind() const;
 
 private:

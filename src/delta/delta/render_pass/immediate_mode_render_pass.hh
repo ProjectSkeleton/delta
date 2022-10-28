@@ -14,9 +14,11 @@ public:
   virtual void Execute() override;
 
   virtual void RecordBindShaderCommand(const std::shared_ptr<Shader>& shader) override;
+  virtual void RecordRenderMeshCommand(const std::shared_ptr<Mesh>& mesh) override;
 
 protected:
   virtual void ExecuteBindShaderCommand(Shader* shader) = 0;
+  virtual void ExecuteRenderMeshCommand(Mesh* mesh) = 0;
 
 protected:
   ImmediateModeRenderPassCommandBuffer command_buffer_;

@@ -10,6 +10,7 @@ public:
 
 protected:
   virtual void ExecuteBindShaderCommand(Shader* shader) override;
+  virtual void ExecuteRenderMeshCommand(Mesh* mesh) override;
 };
 
 }

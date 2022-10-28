@@ -21,4 +21,8 @@ std::shared_ptr<Shader> VulkanInstance::CreateShader(const ShaderCreateInfo& sha
   return nullptr;
 }
 
+std::shared_ptr<Mesh> VulkanInstance::CreateMesh(const MeshCreateInfo& mesh_info) {
+  return nullptr;
+}
+
 }

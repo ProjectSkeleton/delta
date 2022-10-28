@@ -1,6 +1,7 @@
 #include "opengl_instance.hh"
 
 #include "delta/backend/opengl/opengl_render_pass.hh"
+#include "delta/backend/opengl/opengl_mesh.hh"
 #include "delta/backend/opengl/opengl_shader.hh"
 #include "delta/backend/opengl/opengl_window.hh"
 #include "delta/delta/utils/exceptions.hh"
@@ -17,6 +18,10 @@ std::shared_ptr<RenderPass> OpenGlInstance::CreateRenderPass(const std::shared_p
 
 std::shared_ptr<Shader> OpenGlInstance::CreateShader(const ShaderCreateInfo& shader_info) {
   return std::make_shared<OpenGlShader>(shader_info);
+}
+
+std::shared_ptr<Mesh> OpenGlInstance::CreateMesh(const MeshCreateInfo& mesh_info) {
+  return std::make_shared<OpenGlMesh>(mesh_info);
 }
 
 }

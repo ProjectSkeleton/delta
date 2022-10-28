@@ -4,6 +4,7 @@
 
 #include "delta/backend/backend.hh"
 #include "delta/delta/render_pass/render_pass.hh"
+#include "delta/delta/model/mesh.hh"
 #include "delta/delta/shader/shader.hh"
 #include "delta/delta/utils/logger.hh"
 #include "delta/delta/window.hh"
@@ -15,6 +16,7 @@ public:
   virtual std::shared_ptr<Window> CreateWindow(const WindowCreateInfo& window_info = {}) = 0;
   virtual std::shared_ptr<RenderPass> CreateRenderPass(const std::shared_ptr<RenderTarget>& render_target) = 0;
   virtual std::shared_ptr<Shader> CreateShader(const ShaderCreateInfo& shader_info) = 0;
+  virtual std::shared_ptr<Mesh> CreateMesh(const MeshCreateInfo& mesh_info) = 0;
 
 private:
   Logger logger_;

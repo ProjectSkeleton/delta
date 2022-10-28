@@ -13,8 +13,23 @@ int main() {
   shader_info.render_target = window;
   auto shader = instance->CreateShader(shader_info);
 
+  Delta::MeshCreateInfo mesh_info;
+  mesh_info.vertex_layout = shader->GetVertexInputLayout();
+  mesh_info.vertices = {
+    0.5f,  0.5f, 0.0f,
+    0.5f, -0.5f, 0.0f,
+   -0.5f, -0.5f, 0.0f,
+   -0.5f,  0.5f, 0.0f, 
+  };
+  mesh_info.indices = {
+    0, 1, 3,
+    1, 2, 3,
+  };
+  auto mesh = instance->CreateMesh(mesh_info);
+
   auto render_pass = instance->CreateRenderPass(window);
   render_pass->RecordBindShaderCommand(shader);
+  render_pass->RecordRenderMeshCommand(mesh);
 
   while (window->IsOpen()) {
     window->PollEvents();

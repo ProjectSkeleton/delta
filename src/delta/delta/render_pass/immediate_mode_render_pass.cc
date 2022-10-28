@@ -20,6 +20,12 @@ void ImmediateModeRenderPass::Execute() {
         break;
       }
 
+      case RenderPassOpcode::kRenderMesh: {
+        Mesh* mesh = command_buffer_.Extract<Mesh*>(instruction_ptr);
+        ExecuteRenderMeshCommand(mesh);
+        break;
+      }
+
       default: break;
     }
   }
@@ -30,6 +36,11 @@ void ImmediateModeRenderPass::Execute() {
 void ImmediateModeRenderPass::RecordBindShaderCommand(const std::shared_ptr<Shader>& shader) {
   command_buffer_.Push(RenderPassOpcode::kBindShader);
   command_buffer_.Push(shader.get());
+}
+
+void ImmediateModeRenderPass::RecordRenderMeshCommand(const std::shared_ptr<Mesh>& mesh) {
+  command_buffer_.Push(RenderPassOpcode::kRenderMesh);
+  command_buffer_.Push(mesh.get());
 }
 
 }

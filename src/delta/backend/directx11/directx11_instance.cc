@@ -21,4 +21,8 @@ std::shared_ptr<Shader> DirectX11Instance::CreateShader(const ShaderCreateInfo& 
   return nullptr;
 }
 
+std::shared_ptr<Mesh> DirectX11Instance::CreateMesh(const MeshCreateInfo& mesh_info) {
+  return nullptr;
+}
+
 }
