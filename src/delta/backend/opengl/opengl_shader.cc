@@ -26,8 +26,8 @@ GLenum FindOpenGLShaderStage(ShaderStage stage) {
 #if !defined(NDEBUG)
 const char* GetShaderStageName(ShaderStage stage) {
   switch (stage) {
-    case ShaderStage::kVertexShader:      return "Vertex Shader";
     case ShaderStage::kFragmentShader:    return "Fragment Shader";
+    case ShaderStage::kVertexShader:      return "Vertex Shader";
     default: return "Unknown Shader Stage";
   }
 }
@@ -38,7 +38,11 @@ void ApplyOpenGLCompileOptions(spirv_cross::CompilerGLSL& compiler) {
   
   std::string glsl_version_str = (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION);
   int version_major, version_minor;
+#if defined(_WIN32)
+  (void)sscanf_s(glsl_version_str.c_str(), "%d%*c%d", &version_major, &version_minor);
+#else
   (void)sscanf(glsl_version_str.c_str(), "%d%*c%d", &version_major, &version_minor);
+#endif
   options.version = version_major * 100 + version_minor;
 
 	if (options.version < 420) {
