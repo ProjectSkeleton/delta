@@ -15,6 +15,7 @@ public:
 
 private:
   bool enable_depth_test_;
+  int gl_clear_bits_;
   Color clear_color_;
 };
 
