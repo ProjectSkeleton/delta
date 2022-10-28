@@ -6,7 +6,7 @@ namespace Delta {
 
 ImmediateModeRenderPass::ImmediateModeRenderPass(const std::shared_ptr<RenderTarget>& render_target) : render_target_(render_target) { }
 
-void ImmediateModeRenderPass::Execute() const {
+void ImmediateModeRenderPass::Execute() {
   render_target_->OnRenderPassBegin();
 
   size_t instruction_ptr = 0;
@@ -14,19 +14,22 @@ void ImmediateModeRenderPass::Execute() const {
     RenderPassOpcode opcode = command_buffer_.Extract<RenderPassOpcode>(instruction_ptr);
 
     switch (opcode) {
-      /*
-      case RenderPassOpcode::kClear: {
-        Color clear_color = command_buffer_.Extract<Color>(instruction_ptr);
-        ExecuteClearCommand(clear_color);
+      case RenderPassOpcode::kBindShader: {
+        Shader* shader = command_buffer_.Extract<Shader*>(instruction_ptr);
+        ExecuteBindShaderCommand(shader);
         break;
       }
-      */
 
       default: break;
     }
   }
 
   render_target_->OnRenderPassComplete();
+}
+
+void ImmediateModeRenderPass::RecordBindShaderCommand(const std::shared_ptr<Shader>& shader) {
+  command_buffer_.Push(RenderPassOpcode::kBindShader);
+  command_buffer_.Push(shader.get());
 }
 
 }

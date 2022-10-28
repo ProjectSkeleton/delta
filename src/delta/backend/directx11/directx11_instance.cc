@@ -17,4 +17,8 @@ std::shared_ptr<RenderPass> DirectX11Instance::CreateRenderPass(const std::share
   return nullptr;
 }
 
+std::shared_ptr<Shader> DirectX11Instance::CreateShader(const ShaderCreateInfo& shader_info) {
+  return nullptr;
+}
+
 }

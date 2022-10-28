@@ -4,9 +4,19 @@
 
 namespace Delta {
 
-class InstanceCreateException : public std::runtime_error {
+class DeltaException : public std::runtime_error {
 public:
-  InstanceCreateException(const char* what = "") : std::runtime_error(what) { }
+  DeltaException(const char* what = "") : std::runtime_error(what) { }
+};
+
+class InstanceCreateException : public DeltaException {
+public:
+  InstanceCreateException(const char* what = "") : DeltaException(what) { }
+};
+
+class ShaderCreateException : public DeltaException {
+public:
+  ShaderCreateException(const char* what = "") : DeltaException(what) { }
 };
 
 }

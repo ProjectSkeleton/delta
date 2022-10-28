@@ -17,4 +17,8 @@ std::shared_ptr<RenderPass> VulkanInstance::CreateRenderPass(const std::shared_p
   return nullptr;
 }
 
+std::shared_ptr<Shader> VulkanInstance::CreateShader(const ShaderCreateInfo& shader_info) {
+  return nullptr;
+}
+
 }

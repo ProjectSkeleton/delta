@@ -3,6 +3,7 @@
 namespace Delta {
 
 enum class RenderPassOpcode {
+  kBindShader,
 };
 
 }

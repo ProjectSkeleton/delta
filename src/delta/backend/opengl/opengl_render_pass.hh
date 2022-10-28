@@ -7,6 +7,9 @@ namespace Delta {
 class OpenGlRenderPass : public ImmediateModeRenderPass {
 public:
   OpenGlRenderPass(const std::shared_ptr<RenderTarget>& render_target);
+
+protected:
+  virtual void ExecuteBindShaderCommand(Shader* shader) override;
 };
 
 }
