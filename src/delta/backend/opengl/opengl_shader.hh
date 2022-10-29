@@ -12,6 +12,9 @@ public:
 public:
   void Bind() const;
 
+protected:
+  virtual void CreateUniformBuffer(uint32_t index, const UniformBufferInfo& uniform_info) override;
+
 private:
   unsigned int shader_program_;
 };

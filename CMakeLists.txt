@@ -37,6 +37,7 @@ set(DELTA_SRC_BACKEND_OPENGL_FILES
   src/delta/backend/opengl/opengl_mesh.hh src/delta/backend/opengl/opengl_mesh.cc
   src/delta/backend/opengl/opengl_render_pass.hh src/delta/backend/opengl/opengl_render_pass.cc
   src/delta/backend/opengl/opengl_shader.hh src/delta/backend/opengl/opengl_shader.cc
+  src/delta/backend/opengl/opengl_uniform_buffer.hh src/delta/backend/opengl/opengl_uniform_buffer.cc
   src/delta/backend/opengl/opengl_window.hh src/delta/backend/opengl/opengl_window.cc
 )
 source_group("delta/src/backend/opengl" FILES ${DELTA_SRC_BACKEND_OPENGL_FILES})
@@ -119,6 +120,8 @@ add_subdirectory(src/depend/glad)
 target_link_libraries(${PROJECT_NAME} PRIVATE glad)
 add_subdirectory(src/depend/glfw)
 target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
+add_subdirectory(src/depend/glm)
+target_link_libraries(${PROJECT_NAME} PUBLIC glm)
 set(SPIRV_CROSS_CLI OFF CACHE BOOL "Build the CLI binary. Requires SPIRV_CROSS_STATIC." FORCE)
 set(SPIRV_CROSS_ENABLE_TESTS OFF CACHE BOOL "Enable SPIRV-Cross tests." FORCE)
 set(SPIRV_CROSS_ENABLE_GLSL ON CACHE BOOL "Enable GLSL support." FORCE)

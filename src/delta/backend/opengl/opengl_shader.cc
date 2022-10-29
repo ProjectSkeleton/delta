@@ -3,6 +3,7 @@
 #if !defined(NDEBUG)
   #include <sstream>
 #endif
+#include <memory>
 #include <vector>
 
 #include <glad/gl.h>
@@ -10,6 +11,7 @@
 // cause mismatched header and cpp files and you will end up with linker errors
 #include <spirv_glsl.hpp>
 
+#include "delta/backend/opengl/opengl_uniform_buffer.hh"
 #include "delta/delta/shader/shader_stage.hh"
 #include "delta/delta/utils/exceptions.hh"
 
@@ -87,8 +89,6 @@ OpenGlShader::OpenGlShader(const ShaderCreateInfo& shader_info) {
 
   auto code_map = LoadSpv(shader_info.spv_paths);
 
-  PerformReflection(code_map);
-
   std::vector<GLuint> shader_modules;
   for (const auto& spv : code_map) {
     spirv_cross::CompilerGLSL compiler(spv.second);
@@ -128,6 +128,8 @@ OpenGlShader::OpenGlShader(const ShaderCreateInfo& shader_info) {
     glDetachShader(shader_program_, shader);
     glDeleteShader(shader);
 	}
+
+  PerformReflection(code_map);
 }
 
 OpenGlShader::~OpenGlShader() {
@@ -136,6 +138,10 @@ OpenGlShader::~OpenGlShader() {
 
 void OpenGlShader::Bind() const {
   glUseProgram(shader_program_);
+}
+
+void OpenGlShader::CreateUniformBuffer(uint32_t index, const UniformBufferInfo& uniform_info) {
+  uniform_buffers_.emplace(uniform_info.binding, std::make_shared<OpenGlUniformBuffer>(shader_program_, uniform_info));
 }
 
 }

@@ -12,6 +12,9 @@ int main() {
   shader_info.spv_paths.frag_path = "spv/flat.frag.spv";
   shader_info.render_target = window;
   auto shader = instance->CreateShader(shader_info);
+  auto u_projection = shader->GetUniformBuffer("u_projection");
+
+  u_projection->Upload(glm::mat4(1.0f));
 
   Delta::MeshCreateInfo mesh_info;
   mesh_info.vertex_layout = shader->GetVertexInputLayout();

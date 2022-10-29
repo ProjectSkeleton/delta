@@ -21,7 +21,7 @@ public:
   inline std::vector<BufferElement>::iterator end()               { return buffer_elements_.end();   }
   inline std::vector<BufferElement>::const_iterator begin() const { return buffer_elements_.begin(); }
   inline std::vector<BufferElement>::const_iterator end() const   { return buffer_elements_.end();   }
-  inline BufferElement operator [](int i) const                   { return buffer_elements_[i];      }
+  inline BufferElement operator [](size_t i) const                { return buffer_elements_[i];      }
 
 private:
   void CalculateOffsetsAndSize();

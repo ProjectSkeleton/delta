@@ -102,10 +102,12 @@ void Shader::PerformReflection(const std::unordered_map<ShaderStage, std::vector
         BufferElement element(FindUniformMemberType(glsl->get_type(glsl->get_type(uniform.base_type_id).member_types[i])));
         element.name = glsl->get_member_name(uniform.base_type_id, (uint32_t)i);
         buffer_elements.push_back(element);
+        uniform_info.member_indices[element.name] = i;
       }
       uniform_info.layout = buffer_elements;
 
-      uniform_buffers_.emplace(uniform_info.binding, uniform_info);
+
+      CreateUniformBuffer(uniform_info.binding, uniform_info);
     }
 
     delete resources;
@@ -119,6 +121,15 @@ void Shader::PerformReflection(const std::unordered_map<ShaderStage, std::vector
     buffer_elements.push_back(vertex_input_map.at(i));
   }
   vertex_input_layout_ = buffer_elements;
+}
+
+std::shared_ptr<UniformBuffer> Shader::GetUniformBuffer(const std::string& name) {
+  for (auto& uniform : uniform_buffers_) {
+    if (uniform.second->GetName() == name) {
+      return uniform.second;
+    }
+  }
+  return nullptr;
 }
 
 }
