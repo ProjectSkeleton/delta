@@ -6,7 +6,6 @@
 #include <unordered_map>
 
 #include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #include "delta/delta/model/buffer_layout.hh"
 #include "delta/delta/shader/shader_stage.hh"
