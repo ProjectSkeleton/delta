@@ -18,4 +18,7 @@ void WindowsWindow::OnRenderPassBegin() {
 void WindowsWindow::OnRenderPassComplete() {
 }
 
+void WindowsWindow::SetResizeCallback(WindowResizeCallback callback) {
+}
+
 }

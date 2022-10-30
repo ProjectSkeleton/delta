@@ -11,4 +11,7 @@ void VulkanWindow::OnRenderPassBegin() {
 void VulkanWindow::OnRenderPassComplete() {
 }
 
+void VulkanWindow::SetResizeCallback(WindowResizeCallback callback) {
+}
+
 }

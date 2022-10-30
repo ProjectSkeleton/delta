@@ -13,10 +13,13 @@ public:
   virtual void OnRenderPassBegin() override;
   virtual void OnRenderPassComplete() override;
 
+  virtual void SetResizeCallback(WindowResizeCallback callback) override;
+
 private:
   bool enable_depth_test_;
   int gl_clear_bits_;
   Color clear_color_;
+  WindowResizeCallback resize_callback_;
 };
 
 }

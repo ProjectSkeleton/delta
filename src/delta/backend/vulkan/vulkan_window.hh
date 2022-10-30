@@ -11,6 +11,8 @@ public:
 public:
   virtual void OnRenderPassBegin() override;
   virtual void OnRenderPassComplete() override;
+
+  virtual void SetResizeCallback(WindowResizeCallback callback) override;
 };
 
 }

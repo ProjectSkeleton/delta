@@ -31,7 +31,7 @@ void OpenGlUniformBuffer::Upload(const void* data) {
 }
 
 void OpenGlUniformBuffer::Upload(const std::string& member_name, const void* data) {
-  const BufferElement& element = info_.layout[info_.member_indices[member_name]];
+  const BufferElement& element = info_.layout[info_.member_indices.at(member_name)];
   glBindBuffer(GL_UNIFORM_BUFFER, uniform_buffer_);
   glBufferSubData(GL_UNIFORM_BUFFER, element.offset, element.size, data);
   glBindBuffer(GL_UNIFORM_BUFFER, 0);

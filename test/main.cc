@@ -1,4 +1,5 @@
 #include <delta/delta.hh>
+#include <glm/gtc/matrix_transform.hpp>
 
 int main() {
   auto instance = Delta::CreateInstance();
@@ -14,15 +15,17 @@ int main() {
   auto shader = instance->CreateShader(shader_info);
   auto u_projection = shader->GetUniformBuffer("u_projection");
 
-  u_projection->Upload(glm::mat4(1.0f));
+  window->SetResizeCallback([&](unsigned int width, unsigned int height){
+    u_projection->Upload(glm::perspectiveFov(1.57f, (float)width, (float)height, 0.1f, 1000.0f));
+  });
 
   Delta::MeshCreateInfo mesh_info;
   mesh_info.vertex_layout = shader->GetVertexInputLayout();
   mesh_info.vertices = {
-    0.5f,  0.5f, 0.0f,
-    0.5f, -0.5f, 0.0f,
-   -0.5f, -0.5f, 0.0f,
-   -0.5f,  0.5f, 0.0f, 
+    0.5f,  0.5f, -2.0f,
+    0.5f, -0.5f, -2.0f,
+   -0.5f, -0.5f, -2.0f,
+   -0.5f,  0.5f, -2.0f, 
   };
   mesh_info.indices = {
     0, 1, 3,

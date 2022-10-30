@@ -52,6 +52,9 @@ OpenGlWindow::OpenGlWindow(const WindowCreateInfo& window_info) : enable_depth_t
   glfwSetFramebufferSizeCallback(glfw_window_, [](GLFWwindow* glfw_window, int width, int height) {
     OpenGlWindow* win = (OpenGlWindow*)glfwGetWindowUserPointer(glfw_window);
     glViewport(0, 0, width, height);
+    if (win->resize_callback_) {
+      win->resize_callback_(width, height);
+    }
   });
 }
 
@@ -64,6 +67,13 @@ void OpenGlWindow::OnRenderPassBegin() {
 
 void OpenGlWindow::OnRenderPassComplete() {
   glfwSwapBuffers(glfw_window_);
+}
+
+void OpenGlWindow::SetResizeCallback(WindowResizeCallback callback) {
+  resize_callback_ = callback;
+  int w, h;
+  glfwGetFramebufferSize(glfw_window_, &w, &h);
+  resize_callback_(w, h);
 }
 
 }
