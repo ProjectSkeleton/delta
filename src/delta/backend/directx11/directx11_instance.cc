@@ -25,4 +25,16 @@ std::shared_ptr<Mesh> DirectX11Instance::CreateMesh(const MeshCreateInfo& mesh_i
   return nullptr;
 }
 
+std::shared_ptr<Texture> DirectX11Instance::CreateTexture(const std::string& path) {
+  return nullptr;
+}
+
+std::shared_ptr<Texture> DirectX11Instance::CreateTexture(const TextureInfo& texture_info) {
+  return nullptr;
+}
+
+std::shared_ptr<Texture> DirectX11Instance::CreateTexture(const BlankTextureInfo& blank_texture_info) {
+  return nullptr;
+}
+
 }

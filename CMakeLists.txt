@@ -36,7 +36,9 @@ set(DELTA_SRC_BACKEND_OPENGL_FILES
   src/delta/backend/opengl/opengl_instance.hh src/delta/backend/opengl/opengl_instance.cc
   src/delta/backend/opengl/opengl_mesh.hh src/delta/backend/opengl/opengl_mesh.cc
   src/delta/backend/opengl/opengl_render_pass.hh src/delta/backend/opengl/opengl_render_pass.cc
+  src/delta/backend/opengl/opengl_sampler_2d.hh src/delta/backend/opengl/opengl_sampler_2d.cc
   src/delta/backend/opengl/opengl_shader.hh src/delta/backend/opengl/opengl_shader.cc
+  src/delta/backend/opengl/opengl_texture.hh src/delta/backend/opengl/opengl_texture.cc
   src/delta/backend/opengl/opengl_uniform_buffer.hh src/delta/backend/opengl/opengl_uniform_buffer.cc
   src/delta/backend/opengl/opengl_window.hh src/delta/backend/opengl/opengl_window.cc
 )
@@ -66,9 +68,9 @@ set(DELTA_SRC_DELTA_FILES
 source_group("delta/src/delta" FILES ${DELTA_SRC_DELTA_FILES})
 
 set(DELTA_SRC_DELTA_MODEL_FILES
-src/delta/delta/model/buffer_element.hh
-src/delta/delta/model/buffer_layout.hh src/delta/delta/model/buffer_layout.cc
-src/delta/delta/model/mesh.hh
+  src/delta/delta/model/buffer_element.hh
+  src/delta/delta/model/buffer_layout.hh src/delta/delta/model/buffer_layout.cc
+  src/delta/delta/model/mesh.hh
 )
 source_group("delta/src/delta/model" FILES ${DELTA_SRC_DELTA_MODEL_FILES})
 
@@ -87,6 +89,13 @@ set(DELTA_SRC_DELTA_SHADER_FILES
   src/delta/delta/shader/uniform_buffer.hh src/delta/delta/shader/uniform_buffer.cc
 )
 source_group("delta/src/delta/shader" FILES ${DELTA_SRC_DELTA_SHADER_FILES})
+
+
+set(DELTA_SRC_DELTA_TEXTURE_FILES
+  src/delta/delta/texture/sampler_2d.hh src/delta/delta/texture/sampler_2d.cc
+  src/delta/delta/texture/texture.hh
+)
+source_group("delta/src/delta/texture" FILES ${DELTA_SRC_DELTA_TEXTURE_FILES})
 
 set(DELTA_SRC_DELTA_UTILS_FILES
   src/delta/delta/utils/exceptions.hh
@@ -107,6 +116,7 @@ add_library(${PROJECT_NAME}
   ${DELTA_SRC_DELTA_MODEL_FILES}
   ${DELTA_SRC_DELTA_RENDER_PASS_FILES}
   ${DELTA_SRC_DELTA_SHADER_FILES}
+  ${DELTA_SRC_DELTA_TEXTURE_FILES}
   ${DELTA_SRC_DELTA_UTILS_FILES}
 )
 
@@ -133,6 +143,8 @@ set(SPIRV_CROSS_ENABLE_C_API OFF CACHE BOOL "Enable C API wrapper support in sta
 set(SPIRV_CROSS_ENABLE_UTIL OFF CACHE BOOL "Enable util module support." FORCE)
 add_subdirectory(src/depend/SPIRV-Cross)
 target_link_libraries(${PROJECT_NAME} PRIVATE spirv-cross-glsl)
+add_subdirectory(src/depend/stb_image)
+target_link_libraries(${PROJECT_NAME} PRIVATE stb_image)
 
 if (PROJECT_IS_TOP_LEVEL)
   add_subdirectory(test)

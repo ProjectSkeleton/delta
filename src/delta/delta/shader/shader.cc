@@ -107,7 +107,31 @@ void Shader::PerformReflection(const std::unordered_map<ShaderStage, std::vector
       uniform_info.layout = buffer_elements;
 
 
-      CreateUniformBuffer(uniform_info.binding, uniform_info);
+      CreateUniformBuffer(uniform_info);
+    }
+
+    // Find texture samplers
+    for (auto& texture : resources->sampled_images) {
+      auto& type = glsl->get_type(texture.type_id);
+
+      if (!type.image.arrayed) {
+        Sampler2dInfo sampler_info;
+        sampler_info.binding = glsl->get_decoration(texture.id, spv::DecorationBinding);
+        sampler_info.name = glsl->get_name(texture.id);
+        sampler_info.stage = current_stage;
+        CreateSampler2d(sampler_info);
+      }
+      else {
+        // Texture sampler arrays (sampler2DArray)
+        // TODO
+        /*
+        TextureArrayData texture_array_data;
+        texture_array_data.binding = glsl->get_decoration(texture.id, spv::DecorationBinding);
+        texture_array_data.stage = current_stage;
+        texture_array_data.name = glsl->get_name(texture.id);
+        texture_arrays.emplace(texture_array_data.binding, texture_array_data);
+        */
+      }
     }
 
     delete resources;
@@ -124,9 +148,20 @@ void Shader::PerformReflection(const std::unordered_map<ShaderStage, std::vector
 }
 
 std::shared_ptr<UniformBuffer> Shader::GetUniformBuffer(const std::string& name) {
+  // TODO: Hashmap?
   for (auto& uniform : uniform_buffers_) {
     if (uniform.second->GetName() == name) {
       return uniform.second;
+    }
+  }
+  return nullptr;
+}
+
+std::shared_ptr<Sampler2d> Shader::GetSampler2d(const std::string& name) {
+  // TODO: Hashmap?
+  for (auto& sampler : sampler_2ds_) {
+    if (sampler.second->GetName() == name) {
+      return sampler.second;
     }
   }
   return nullptr;

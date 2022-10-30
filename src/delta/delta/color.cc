@@ -24,4 +24,12 @@ uint32_t Color::UintRgba() const {
   return  (rr << 24) | (gg << 16) | (bb << 8) | aa;
 };
 
+uint32_t Color::UintAbgr() const {
+  unsigned char rr = (unsigned char)(0xff * r);
+  unsigned char gg = (unsigned char)(0xff * g);
+  unsigned char bb = (unsigned char)(0xff * b);
+  unsigned char aa = (unsigned char)(0xff * a);
+  return  (aa << 24) | (bb << 16) | (gg << 8) | rr;
+};
+
 }

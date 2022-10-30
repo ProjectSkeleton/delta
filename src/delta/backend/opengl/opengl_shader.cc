@@ -11,6 +11,7 @@
 // cause mismatched header and cpp files and you will end up with linker errors
 #include <spirv_glsl.hpp>
 
+#include "delta/backend/opengl/opengl_sampler_2d.hh"
 #include "delta/backend/opengl/opengl_uniform_buffer.hh"
 #include "delta/delta/shader/shader_stage.hh"
 #include "delta/delta/utils/exceptions.hh"
@@ -129,7 +130,9 @@ OpenGlShader::OpenGlShader(const ShaderCreateInfo& shader_info) {
     glDeleteShader(shader);
 	}
 
+  glUseProgram(shader_program_);
   PerformReflection(code_map);
+  glUseProgram(0);
 }
 
 OpenGlShader::~OpenGlShader() {
@@ -140,8 +143,12 @@ void OpenGlShader::Bind() const {
   glUseProgram(shader_program_);
 }
 
-void OpenGlShader::CreateUniformBuffer(uint32_t index, const UniformBufferInfo& uniform_info) {
+void OpenGlShader::CreateUniformBuffer(const UniformBufferInfo& uniform_info) {
   uniform_buffers_.emplace(uniform_info.binding, std::make_shared<OpenGlUniformBuffer>(shader_program_, uniform_info));
+}
+
+void OpenGlShader::CreateSampler2d(const Sampler2dInfo& sampler_info) {
+  sampler_2ds_.emplace(sampler_info.binding, std::make_shared<OpenGlSampler2d>(sampler_info, shader_program_, current_texture_slot_++));
 }
 
 }

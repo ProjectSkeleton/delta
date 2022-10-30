@@ -59,7 +59,7 @@ OpenGlWindow::OpenGlWindow(const WindowCreateInfo& window_info) : enable_depth_t
 }
 
 void OpenGlWindow::OnRenderPassBegin() {
-  // TODO: Bind window framebuffer
+  glBindFramebuffer(GL_FRAMEBUFFER, 0);
   enable_depth_test_ ? glEnable(GL_DEPTH_TEST) : glDisable(GL_DEPTH_TEST);
   glClearColor(clear_color_.r, clear_color_.g, clear_color_.b, clear_color_.a);
   glClear(gl_clear_bits_);
