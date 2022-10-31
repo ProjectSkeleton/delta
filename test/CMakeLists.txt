@@ -13,6 +13,7 @@ set(DELTA_TEST_GLSL_FILES
 source_group("delta_test/src/glsl" FILES ${DELTA_TEST_GLSL_FILES})
 
 add_executable(${PROJECT_NAME} ${DELTA_TEST_SRC_FILES} ${DELTA_TEST_GLSL_FILES})
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE delta)
 
@@ -30,5 +31,5 @@ foreach(GLSL_FILE ${GLSL_SOURCE_FILES})
     DEPENDS ${GLSL_FILE})
   list(APPEND SPIRV_BINARY_FILES ${SPIRV_FILE})
 endforeach(GLSL_FILE)
-add_custom_target(calcium_test_shader_target DEPENDS ${SPIRV_BINARY_FILES})
-add_dependencies(${PROJECT_NAME} calcium_test_shader_target)
+add_custom_target(delta_test_shader_target DEPENDS ${SPIRV_BINARY_FILES})
+add_dependencies(${PROJECT_NAME} delta_test_shader_target)

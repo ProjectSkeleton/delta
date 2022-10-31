@@ -51,6 +51,7 @@ std::shared_ptr<Instance> CreateInstance(Backend preferred_backend) {
 #elif defined(__APPLE__)
         case Backend::kMetal: return std::make_shared<MetalInstance>();
 #endif
+        default: return nullptr;
       }
     }
     catch (const InstanceCreateException& e) {

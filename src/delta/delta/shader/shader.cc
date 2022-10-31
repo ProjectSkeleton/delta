@@ -64,6 +64,7 @@ ShaderDataType FindUniformMemberType(const spirv_cross::SPIRType& type) {
       }
       break;
     }
+    default: return ShaderDataType::kUnknown;
   }
 
   return ShaderDataType::kUnknown;
