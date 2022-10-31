@@ -2,7 +2,7 @@
 
 namespace Delta {
 
-WindowsWindow::WindowsWindow(const WindowCreateInfo& window_info) {
+WindowsWindow::WindowsWindow(const WindowInfo& window_info) {
 }
 
 bool WindowsWindow::IsOpen() const {
@@ -12,10 +12,10 @@ bool WindowsWindow::IsOpen() const {
 void WindowsWindow::PollEvents() {
 }
 
-void WindowsWindow::OnRenderPassBegin() {
+void WindowsWindow::OnRenderPassBegin(const RenderPassInfo& render_pass_info) {
 }
 
-void WindowsWindow::OnRenderPassComplete() {
+void WindowsWindow::OnRenderPassComplete(const RenderPassInfo& render_pass_info) {
 }
 
 void WindowsWindow::SetResizeCallback(WindowResizeCallback callback) {

@@ -2,7 +2,8 @@
 
 #include <glad/gl.h>
 
-#include "opengl_texture.hh"
+#include "delta/backend/opengl/opengl_frame_buffer.hh"
+#include "delta/backend/opengl/opengl_texture.hh"
 
 namespace Delta {
 
@@ -15,8 +16,15 @@ OpenGlSampler2d::OpenGlSampler2d(const Sampler2dInfo& sampler_info, unsigned int
 void OpenGlSampler2d::SetTexture(std::shared_ptr<Texture> texture) {
   glUseProgram(shader_program_);
   glActiveTexture(GL_TEXTURE0 + texture_slot_);
-  OpenGlTexture* gl_texture = (OpenGlTexture*)texture.get();
-  gl_texture->Bind();
+
+  if (texture->IsFrameBuffer()) {
+    OpenGlFrameBuffer* gl_texture = (OpenGlFrameBuffer*)texture.get();
+    gl_texture->BindAsTexture();
+  }
+  else {
+    OpenGlTexture* gl_texture = (OpenGlTexture*)texture.get();
+    gl_texture->Bind();
+  }
   bound_texture_ = texture;
 }
 

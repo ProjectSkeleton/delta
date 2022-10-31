@@ -5,7 +5,7 @@
 
 namespace Delta {
 
-OpenGlRenderPass::OpenGlRenderPass(const std::shared_ptr<RenderTarget>& render_target) : ImmediateModeRenderPass(render_target) { }
+OpenGlRenderPass::OpenGlRenderPass(const RenderPassInfo& render_pass_info) : ImmediateModeRenderPass(render_pass_info) { }
 
 void OpenGlRenderPass::ExecuteBindShaderCommand(Shader* shader) {
   OpenGlShader* ogl_shader = (OpenGlShader*)(shader);

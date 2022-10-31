@@ -9,19 +9,23 @@ VulkanInstance::VulkanInstance() {
   throw InstanceCreateException("Vulkan not yet supported");
 }
 
-std::shared_ptr<Window> VulkanInstance::CreateWindow(const WindowCreateInfo& window_info) {
+std::shared_ptr<Window> VulkanInstance::CreateWindow(const WindowInfo& window_info) {
   return std::make_shared<VulkanWindow>(window_info);
 }
 
-std::shared_ptr<RenderPass> VulkanInstance::CreateRenderPass(const std::shared_ptr<RenderTarget>& render_target) {
+std::shared_ptr<RenderPass> VulkanInstance::CreateRenderPass(const RenderPassInfo& render_pass_info) {
   return nullptr;
 }
 
-std::shared_ptr<Shader> VulkanInstance::CreateShader(const ShaderCreateInfo& shader_info) {
+std::shared_ptr<Shader> VulkanInstance::CreateShader(const ShaderInfo& shader_info) {
   return nullptr;
 }
 
-std::shared_ptr<Mesh> VulkanInstance::CreateMesh(const MeshCreateInfo& mesh_info) {
+std::shared_ptr<Mesh> VulkanInstance::CreateMesh(const MeshInfo& mesh_info) {
+  return nullptr;
+}
+
+std::shared_ptr<FrameBuffer> VulkanInstance::CreateFrameBuffer(const FrameBufferInfo& frame_buffer_info) {
   return nullptr;
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <string>
 
 #include "delta/delta/color.hh"
 
@@ -34,6 +35,8 @@ struct BlankTextureInfo {
 };
 
 class Texture {
+public:
+  virtual bool IsFrameBuffer() const = 0;
 };
 
 }

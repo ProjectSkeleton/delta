@@ -4,10 +4,10 @@
 
 namespace Delta {
 
-ImmediateModeRenderPass::ImmediateModeRenderPass(const std::shared_ptr<RenderTarget>& render_target) : render_target_(render_target) { }
+ImmediateModeRenderPass::ImmediateModeRenderPass(const RenderPassInfo& render_pass_info) : render_pass_info_(render_pass_info) { }
 
 void ImmediateModeRenderPass::Execute() {
-  render_target_->OnRenderPassBegin();
+  render_pass_info_.render_target->OnRenderPassBegin(render_pass_info_);
 
   size_t instruction_ptr = 0;
   while (instruction_ptr < command_buffer_.Size()) {
@@ -30,7 +30,7 @@ void ImmediateModeRenderPass::Execute() {
     }
   }
 
-  render_target_->OnRenderPassComplete();
+  render_pass_info_.render_target->OnRenderPassComplete(render_pass_info_);
 }
 
 void ImmediateModeRenderPass::RecordBindShaderCommand(const std::shared_ptr<Shader>& shader) {

@@ -6,7 +6,7 @@
 
 namespace Delta {
 
-struct MeshCreateInfo {
+struct MeshInfo {
   BufferLayout vertex_layout;
   std::vector<float> vertices;
   std::vector<unsigned int> indices;

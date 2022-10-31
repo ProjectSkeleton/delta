@@ -85,7 +85,7 @@ GLuint CreateShaderModule(const std::string& glsl_code, ShaderStage shader_stage
   return shader;
 }
 
-OpenGlShader::OpenGlShader(const ShaderCreateInfo& shader_info) {
+OpenGlShader::OpenGlShader(const ShaderInfo& shader_info) {
   shader_program_ = glCreateProgram();
 
   auto code_map = LoadSpv(shader_info.spv_paths);

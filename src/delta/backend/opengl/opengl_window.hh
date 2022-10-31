@@ -7,19 +7,18 @@ namespace Delta {
 
 class OpenGlWindow : public GlfwWindow {
 public:
-  OpenGlWindow(const WindowCreateInfo& window_info);
+  OpenGlWindow(const WindowInfo& window_info);
 
 public:
-  virtual void OnRenderPassBegin() override;
-  virtual void OnRenderPassComplete() override;
+  virtual void OnRenderPassBegin(const RenderPassInfo& render_pass_info) override;
+  virtual void OnRenderPassComplete(const RenderPassInfo& render_pass_info) override;
 
   virtual void SetResizeCallback(WindowResizeCallback callback) override;
 
 private:
-  bool enable_depth_test_;
-  int gl_clear_bits_;
-  Color clear_color_;
   WindowResizeCallback resize_callback_;
+
+  int width_, height_;
 };
 
 }

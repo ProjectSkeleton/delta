@@ -18,7 +18,9 @@ private:
   void CreateTexture(int width, int height, int channels, TextureWrap wrap, TextureFilter filter, void* data);
 
 public:
-  void Bind() const;
+  virtual void Bind() const;
+
+  virtual bool IsFrameBuffer() const override;
 
 private:
   unsigned int texture_;

@@ -19,7 +19,7 @@ struct ShaderSourcePaths {
   std::string frag_path;
 };
 
-struct ShaderCreateInfo {
+struct ShaderInfo {
   ShaderSourcePaths spv_paths;
   std::shared_ptr<RenderTarget> render_target;
 };

@@ -109,4 +109,8 @@ void OpenGlTexture::Bind() const {
 	glBindTexture(GL_TEXTURE_2D, texture_);
 }
 
+bool OpenGlTexture::IsFrameBuffer() const {
+	return false;
+}
+
 }

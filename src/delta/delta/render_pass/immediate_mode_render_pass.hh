@@ -8,7 +8,7 @@ namespace Delta {
 
 class ImmediateModeRenderPass : public RenderPass {
 public:
-  ImmediateModeRenderPass(const std::shared_ptr<RenderTarget>& render_target);
+  ImmediateModeRenderPass(const RenderPassInfo& render_pass_info);
 
 public:
   virtual void Execute() override;
@@ -22,7 +22,7 @@ protected:
 
 protected:
   ImmediateModeRenderPassCommandBuffer command_buffer_;
-  std::shared_ptr<RenderTarget> render_target_;
+  RenderPassInfo render_pass_info_;
 };
 
 }

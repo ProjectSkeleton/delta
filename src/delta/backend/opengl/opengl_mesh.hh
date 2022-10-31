@@ -6,7 +6,7 @@ namespace Delta {
 
 class OpenGlMesh : public Mesh {
 public:
-  OpenGlMesh(const MeshCreateInfo& mesh_info);
+  OpenGlMesh(const MeshInfo& mesh_info);
   ~OpenGlMesh();
 
 public:

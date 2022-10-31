@@ -2,13 +2,13 @@
 
 namespace Delta {
 
-VulkanWindow::VulkanWindow(const WindowCreateInfo& window_info) {
+VulkanWindow::VulkanWindow(const WindowInfo& window_info) {
 }
 
-void VulkanWindow::OnRenderPassBegin() {
+void VulkanWindow::OnRenderPassBegin(const RenderPassInfo& render_pass_info) {
 }
 
-void VulkanWindow::OnRenderPassComplete() {
+void VulkanWindow::OnRenderPassComplete(const RenderPassInfo& render_pass_info) {
 }
 
 void VulkanWindow::SetResizeCallback(WindowResizeCallback callback) {

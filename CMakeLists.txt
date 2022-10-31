@@ -33,6 +33,7 @@ if(APPLE)
 endif()
 
 set(DELTA_SRC_BACKEND_OPENGL_FILES
+  src/delta/backend/opengl/opengl_frame_buffer.hh src/delta/backend/opengl/opengl_frame_buffer.cc
   src/delta/backend/opengl/opengl_instance.hh src/delta/backend/opengl/opengl_instance.cc
   src/delta/backend/opengl/opengl_mesh.hh src/delta/backend/opengl/opengl_mesh.cc
   src/delta/backend/opengl/opengl_render_pass.hh src/delta/backend/opengl/opengl_render_pass.cc
@@ -92,6 +93,7 @@ source_group("delta/src/delta/shader" FILES ${DELTA_SRC_DELTA_SHADER_FILES})
 
 
 set(DELTA_SRC_DELTA_TEXTURE_FILES
+  src/delta/delta/texture/frame_buffer.hh
   src/delta/delta/texture/sampler_2d.hh src/delta/delta/texture/sampler_2d.cc
   src/delta/delta/texture/texture.hh
 )

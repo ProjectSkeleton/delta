@@ -6,7 +6,7 @@ namespace Delta {
 
 class OpenGlShader : public Shader {
 public:
-  OpenGlShader(const ShaderCreateInfo& shader_info);
+  OpenGlShader(const ShaderInfo& shader_info);
   ~OpenGlShader();
 
 public:

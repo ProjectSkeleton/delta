@@ -11,13 +11,11 @@ namespace Delta {
 
 typedef std::function<void(unsigned int width, unsigned int height)> WindowResizeCallback;
 
-struct WindowCreateInfo {
+struct WindowInfo {
   size_t width = 1280;
   size_t height = 720;
   std::string title;
   bool enable_vsync = true;
-  bool enable_depth_test = false;
-  Color clear_color;
 };
 
 class Window : public RenderTarget {

@@ -7,6 +7,28 @@
 
 namespace Delta {
 
+enum class RenderPassBeginOp {
+  kPreserveExistingContents,
+  kClear,
+  kDontCare,
+};
+
+enum class RenderPassCompleteOp {
+  kPreserveExistingContents,
+  kSwapchainPresent,
+  kDontCare,
+};
+
+class RenderTarget;
+
+struct RenderPassInfo {
+  RenderPassBeginOp on_begin = RenderPassBeginOp::kClear;
+  RenderPassCompleteOp on_complete = RenderPassCompleteOp::kSwapchainPresent;
+  Color clear_color;
+  bool enable_depth_test = true;
+  std::shared_ptr<RenderTarget> render_target;
+};
+
 class RenderPass {
 public:
   virtual void Execute() = 0;

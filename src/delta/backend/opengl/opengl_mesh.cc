@@ -21,7 +21,7 @@ GLenum DeltaShaderDataTypeToOpenGlType(ShaderDataType type) {
   }
 }
 
-OpenGlMesh::OpenGlMesh(const MeshCreateInfo& mesh_info) {
+OpenGlMesh::OpenGlMesh(const MeshInfo& mesh_info) {
   glGenVertexArrays(1, &vertex_array_);
   glBindVertexArray(vertex_array_);
 
