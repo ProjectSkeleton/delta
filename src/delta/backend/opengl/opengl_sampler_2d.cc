@@ -22,13 +22,15 @@ void OpenGlSampler2d::BindTarget() {
   glUseProgram(shader_program_);
   glActiveTexture(GL_TEXTURE0 + texture_slot_);
 
-  if (bound_target_->IsFrameBuffer()) {
-    OpenGlFrameBuffer* gl_frame_buffer = (OpenGlFrameBuffer*)bound_target_.get();
-    gl_frame_buffer->BindColorAttachment();
-  }
-  else {
-    OpenGlTexture2d* gl_texture = (OpenGlTexture2d*)bound_target_.get();
-    gl_texture->Bind();
+  if (bound_target_) {
+    if (bound_target_->IsFrameBuffer()) {
+      OpenGlFrameBuffer* gl_frame_buffer = (OpenGlFrameBuffer*)bound_target_.get();
+      gl_frame_buffer->BindColorAttachment();
+    }
+    else {
+      OpenGlTexture2d* gl_texture = (OpenGlTexture2d*)bound_target_.get();
+      gl_texture->Bind();
+    }
   }
 }
 
