@@ -11,6 +11,9 @@ public:
 public:
   virtual void SetTexture(std::shared_ptr<Texture> texture) override;
 
+public:
+  void BindTexture();
+
 private:
   unsigned int shader_program_;
   unsigned int texture_slot_;

@@ -141,6 +141,10 @@ OpenGlShader::~OpenGlShader() {
 
 void OpenGlShader::Bind() const {
   glUseProgram(shader_program_);
+  for (const auto& sampler2d : sampler_2ds_) {
+    OpenGlSampler2d* sampler = (OpenGlSampler2d*)sampler2d.second.get();
+    sampler->BindTexture();
+  }
 }
 
 void OpenGlShader::CreateUniformBuffer(const UniformBufferInfo& uniform_info) {

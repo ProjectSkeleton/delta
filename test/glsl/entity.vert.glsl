@@ -16,4 +16,5 @@ layout (binding = 1) uniform ModelMatrix {
 void main() {
   v_tex = a_tex;
   gl_Position = u_projection.matrix * u_model.matrix * vec4(a_pos, 1.0);
+  gl_Position.y *= -1;
 }

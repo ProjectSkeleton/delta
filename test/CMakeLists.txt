@@ -7,8 +7,10 @@ set(DELTA_TEST_SRC_FILES
 source_group("delta_test/src" FILES ${DELTA_TEST_SRC_FILES})
 
 set(DELTA_TEST_GLSL_FILES
-  glsl/flat.vert.glsl
-  glsl/flat.frag.glsl
+  glsl/entity.vert.glsl
+  glsl/entity.frag.glsl
+  glsl/final.vert.glsl
+  glsl/final.frag.glsl
 )
 source_group("delta_test/src/glsl" FILES ${DELTA_TEST_GLSL_FILES})
 

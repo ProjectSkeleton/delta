@@ -14,18 +14,22 @@ OpenGlSampler2d::OpenGlSampler2d(const Sampler2dInfo& sampler_info, unsigned int
 }
 
 void OpenGlSampler2d::SetTexture(std::shared_ptr<Texture> texture) {
+  bound_texture_ = texture;
+  BindTexture();
+}
+
+void OpenGlSampler2d::BindTexture() {
   glUseProgram(shader_program_);
   glActiveTexture(GL_TEXTURE0 + texture_slot_);
 
-  if (texture->IsFrameBuffer()) {
-    OpenGlFrameBuffer* gl_texture = (OpenGlFrameBuffer*)texture.get();
+  if (bound_texture_->IsFrameBuffer()) {
+    OpenGlFrameBuffer* gl_texture = (OpenGlFrameBuffer*)bound_texture_.get();
     gl_texture->BindAsTexture();
   }
   else {
-    OpenGlTexture* gl_texture = (OpenGlTexture*)texture.get();
+    OpenGlTexture* gl_texture = (OpenGlTexture*)bound_texture_.get();
     gl_texture->Bind();
   }
-  bound_texture_ = texture;
 }
 
 }

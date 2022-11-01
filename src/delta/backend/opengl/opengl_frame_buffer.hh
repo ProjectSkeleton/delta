@@ -16,6 +16,9 @@ public:
   virtual void OnRenderPassComplete(const RenderPassInfo& render_pass_info) override;
 
 public:
+  virtual void Resize(unsigned int width, unsigned int height) override;
+
+public:
   virtual void BindAsTexture() const;
 
   virtual bool IsFrameBuffer() const override;
@@ -25,8 +28,8 @@ private:
   unsigned int color_attachment_ = 0;
   unsigned int depth_attachment_ = 0;
 
-  size_t width_;
-  size_t height_;
+  int width_;
+  int height_;
 };
 
 }

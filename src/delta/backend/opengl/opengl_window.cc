@@ -60,14 +60,15 @@ void OpenGlWindow::OnRenderPassBegin(const RenderPassInfo& render_pass_info) {
   glBindFramebuffer(GL_FRAMEBUFFER, 0);
   glViewport(0, 0, width_, height_);
 
+  if (render_pass_info.enable_depth_test) {
+    glEnable(GL_DEPTH_TEST);
+  }
+  else {
+    glDisable(GL_DEPTH_TEST);
+  }
+
   if (render_pass_info.on_begin == RenderPassBeginOp::kClear) {
     glClearColor(render_pass_info.clear_color.r, render_pass_info.clear_color.g, render_pass_info.clear_color.b, render_pass_info.clear_color.a);
-    if (render_pass_info.enable_depth_test) {
-      glEnable(GL_DEPTH_TEST);
-    }
-    else {
-      glDisable(GL_DEPTH_TEST);
-    }
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   }
 }
