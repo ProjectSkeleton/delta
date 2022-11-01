@@ -121,6 +121,7 @@ add_library(${PROJECT_NAME}
   ${DELTA_SRC_DELTA_TEXTURE_FILES}
   ${DELTA_SRC_DELTA_UTILS_FILES}
 )
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
 target_include_directories(${PROJECT_NAME} PUBLIC src)
 
