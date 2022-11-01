@@ -25,6 +25,7 @@ public:
   virtual std::shared_ptr<Texture2d> CreateTexture2d(const std::string& path) = 0;
   virtual std::shared_ptr<Texture2d> CreateTexture2d(const Texture2dInfo& texture_info) = 0;
   virtual std::shared_ptr<Texture2d> CreateTexture2d(const BlankTexture2dInfo& blank_texture_info) = 0;
+  virtual std::shared_ptr<Texture2d> CreateTexture2d(const Color& color) = 0;
 
 private:
   Logger logger_;

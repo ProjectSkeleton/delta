@@ -41,4 +41,8 @@ std::shared_ptr<Texture2d> VulkanInstance::CreateTexture2d(const BlankTexture2dI
   return nullptr;
 }
 
+std::shared_ptr<Texture2d> VulkanInstance::CreateTexture2d(const Color& color) {
+  return nullptr;
+}
+
 }

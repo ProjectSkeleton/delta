@@ -42,4 +42,10 @@ std::shared_ptr<Texture2d> OpenGlInstance::CreateTexture2d(const BlankTexture2dI
   return std::make_shared<OpenGlTexture2d>(blank_texture_info);
 }
 
+std::shared_ptr<Texture2d> OpenGlInstance::CreateTexture2d(const Color& color) {
+  BlankTexture2dInfo tex_info;
+  tex_info.color = color;
+  return std::make_shared<OpenGlTexture2d>(tex_info);
+}
+
 }

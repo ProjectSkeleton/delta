@@ -14,6 +14,7 @@ public:
   virtual std::shared_ptr<Texture2d> CreateTexture2d(const std::string& path) override;
   virtual std::shared_ptr<Texture2d> CreateTexture2d(const Texture2dInfo& texture_info) override;
   virtual std::shared_ptr<Texture2d> CreateTexture2d(const BlankTexture2dInfo& blank_texture_info) override;
+  virtual std::shared_ptr<Texture2d> CreateTexture2d(const Color& color) override;
 };
 
 }

@@ -41,4 +41,8 @@ std::shared_ptr<Texture2d> DirectX11Instance::CreateTexture2d(const BlankTexture
   return nullptr;
 }
 
+std::shared_ptr<Texture2d> DirectX11Instance::CreateTexture2d(const Color& color) {
+  return nullptr;
+}
+
 }

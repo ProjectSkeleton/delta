@@ -20,7 +20,7 @@ struct BlankTexture2dInfo {
   uint32_t width = 1;
   uint32_t height = 1;
   Color color;
-  TextureFilter filter = TextureFilter::kLinear;
+  TextureFilter filter = TextureFilter::kNearest;
   TextureWrap wrap = TextureWrap::kRepeat;
 };
 
