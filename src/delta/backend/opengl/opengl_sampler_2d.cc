@@ -3,7 +3,7 @@
 #include <glad/gl.h>
 
 #include "delta/backend/opengl/opengl_frame_buffer.hh"
-#include "delta/backend/opengl/opengl_texture.hh"
+#include "delta/backend/opengl/opengl_texture_2d.hh"
 
 namespace Delta {
 
@@ -13,21 +13,21 @@ OpenGlSampler2d::OpenGlSampler2d(const Sampler2dInfo& sampler_info, unsigned int
   glUniform1i(glGetUniformLocation(shader_program, sampler_info.name.c_str()), texture_slot);
 }
 
-void OpenGlSampler2d::SetTexture(std::shared_ptr<Texture> texture) {
-  bound_texture_ = texture;
-  BindTexture();
+void OpenGlSampler2d::SetTexture(std::shared_ptr<Sampler2dBindTarget> target) {
+  bound_target_ = target;
+  BindTarget();
 }
 
-void OpenGlSampler2d::BindTexture() {
+void OpenGlSampler2d::BindTarget() {
   glUseProgram(shader_program_);
   glActiveTexture(GL_TEXTURE0 + texture_slot_);
 
-  if (bound_texture_->IsFrameBuffer()) {
-    OpenGlFrameBuffer* gl_texture = (OpenGlFrameBuffer*)bound_texture_.get();
-    gl_texture->BindAsTexture();
+  if (bound_target_->IsFrameBuffer()) {
+    OpenGlFrameBuffer* gl_frame_buffer = (OpenGlFrameBuffer*)bound_target_.get();
+    gl_frame_buffer->BindColorAttachment();
   }
   else {
-    OpenGlTexture* gl_texture = (OpenGlTexture*)bound_texture_.get();
+    OpenGlTexture2d* gl_texture = (OpenGlTexture2d*)bound_target_.get();
     gl_texture->Bind();
   }
 }

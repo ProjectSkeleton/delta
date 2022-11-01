@@ -140,10 +140,11 @@ OpenGlShader::~OpenGlShader() {
 }
 
 void OpenGlShader::Bind() const {
+  // TODO: avoid casting back to OpenGlSampler2d*
   glUseProgram(shader_program_);
   for (const auto& sampler2d : sampler_2ds_) {
     OpenGlSampler2d* sampler = (OpenGlSampler2d*)sampler2d.second.get();
-    sampler->BindTexture();
+    sampler->BindTarget();
   }
 }
 

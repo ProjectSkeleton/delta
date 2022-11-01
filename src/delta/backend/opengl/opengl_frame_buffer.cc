@@ -71,12 +71,8 @@ void OpenGlFrameBuffer::Resize(unsigned int width, unsigned int height) {
   glBindRenderbuffer(GL_RENDERBUFFER, 0);
 }
 
-void OpenGlFrameBuffer::BindAsTexture() const {
+void OpenGlFrameBuffer::BindColorAttachment() const {
   glBindTexture(GL_TEXTURE_2D, color_attachment_);
-}
-
-bool OpenGlFrameBuffer::IsFrameBuffer() const {
-  return true;
 }
 
 }

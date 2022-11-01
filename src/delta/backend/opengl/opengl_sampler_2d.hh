@@ -9,16 +9,16 @@ public:
   OpenGlSampler2d(const Sampler2dInfo& sampler_info, unsigned int shader_program, unsigned int texture_slot);
 
 public:
-  virtual void SetTexture(std::shared_ptr<Texture> texture) override;
+  virtual void SetTexture(std::shared_ptr<Sampler2dBindTarget> texture) override;
 
 public:
-  void BindTexture();
+  void BindTarget();
 
 private:
   unsigned int shader_program_;
   unsigned int texture_slot_;
 
-  std::shared_ptr<Texture> bound_texture_;
+  std::shared_ptr<Sampler2dBindTarget> bound_target_;
 };
 
 }

@@ -3,7 +3,8 @@
 #include <cstddef>
 
 #include "delta/delta/render_target.hh"
-#include "delta/delta/texture/texture.hh"
+#include "delta/delta/texture/sampler_2d_bind_target.hh"
+#include "delta/delta/texture/static_texture.hh"
 
 namespace Delta {
 
@@ -13,9 +14,12 @@ struct FrameBufferInfo {
   TextureFilter filter = TextureFilter::kNearest;
 };
 
-class FrameBuffer : public RenderTarget, public Texture {
+class FrameBuffer : public RenderTarget, public Sampler2dBindTarget {
 public:
   virtual void Resize(unsigned int width, unsigned int height) = 0;
+
+public:
+  virtual bool IsFrameBuffer() const override;
 };
 
 }

@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "delta/delta/color.hh"
 #include "delta/delta/shader/shader.hh"
 #include "delta/delta/model/mesh.hh"
 

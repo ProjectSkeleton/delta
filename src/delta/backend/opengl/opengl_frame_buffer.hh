@@ -1,6 +1,6 @@
 #pragma once
 
-#include "delta/backend/opengl/opengl_texture.hh"
+#include "delta/backend/opengl/opengl_texture_2d.hh"
 #include "delta/delta/render_pass/render_pass.hh"
 #include "delta/delta/texture/frame_buffer.hh"
 
@@ -19,9 +19,7 @@ public:
   virtual void Resize(unsigned int width, unsigned int height) override;
 
 public:
-  virtual void BindAsTexture() const;
-
-  virtual bool IsFrameBuffer() const override;
+  void BindColorAttachment() const;
 
 private:
   unsigned int framebuffer_;

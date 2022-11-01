@@ -29,15 +29,15 @@ std::shared_ptr<FrameBuffer> DirectX11Instance::CreateFrameBuffer(const FrameBuf
   return nullptr;
 }
 
-std::shared_ptr<Texture> DirectX11Instance::CreateTexture(const std::string& path) {
+std::shared_ptr<Texture2d> DirectX11Instance::CreateTexture2d(const std::string& path) {
   return nullptr;
 }
 
-std::shared_ptr<Texture> DirectX11Instance::CreateTexture(const TextureInfo& texture_info) {
+std::shared_ptr<Texture2d> DirectX11Instance::CreateTexture2d(const Texture2dInfo& texture_info) {
   return nullptr;
 }
 
-std::shared_ptr<Texture> DirectX11Instance::CreateTexture(const BlankTextureInfo& blank_texture_info) {
+std::shared_ptr<Texture2d> DirectX11Instance::CreateTexture2d(const BlankTexture2dInfo& blank_texture_info) {
   return nullptr;
 }
 

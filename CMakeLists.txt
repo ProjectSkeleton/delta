@@ -39,7 +39,7 @@ set(DELTA_SRC_BACKEND_OPENGL_FILES
   src/delta/backend/opengl/opengl_render_pass.hh src/delta/backend/opengl/opengl_render_pass.cc
   src/delta/backend/opengl/opengl_sampler_2d.hh src/delta/backend/opengl/opengl_sampler_2d.cc
   src/delta/backend/opengl/opengl_shader.hh src/delta/backend/opengl/opengl_shader.cc
-  src/delta/backend/opengl/opengl_texture.hh src/delta/backend/opengl/opengl_texture.cc
+  src/delta/backend/opengl/opengl_texture_2d.hh src/delta/backend/opengl/opengl_texture_2d.cc
   src/delta/backend/opengl/opengl_uniform_buffer.hh src/delta/backend/opengl/opengl_uniform_buffer.cc
   src/delta/backend/opengl/opengl_window.hh src/delta/backend/opengl/opengl_window.cc
 )
@@ -93,9 +93,11 @@ source_group("delta/src/delta/shader" FILES ${DELTA_SRC_DELTA_SHADER_FILES})
 
 
 set(DELTA_SRC_DELTA_TEXTURE_FILES
-  src/delta/delta/texture/frame_buffer.hh
+  src/delta/delta/texture/frame_buffer.hh src/delta/delta/texture/frame_buffer.cc
   src/delta/delta/texture/sampler_2d.hh src/delta/delta/texture/sampler_2d.cc
-  src/delta/delta/texture/texture.hh
+  src/delta/delta/texture/sampler_2d_bind_target.hh
+  src/delta/delta/texture/static_texture.hh
+  src/delta/delta/texture/texture_2d.hh src/delta/delta/texture/texture_2d.cc
 )
 source_group("delta/src/delta/texture" FILES ${DELTA_SRC_DELTA_TEXTURE_FILES})
 

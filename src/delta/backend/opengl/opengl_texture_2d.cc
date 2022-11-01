@@ -1,4 +1,4 @@
-#include "opengl_texture.hh"
+#include "opengl_texture_2d.hh"
 
 #include <glad/gl.h>
 #include <stb/stb_image.h>
@@ -30,7 +30,7 @@ GLenum TextureWrapModeToGLEnum(TextureWrap wrap_mode) {
   }
 }
 
-void OpenGlTexture::CreateTexture(int width, int height, int channels, TextureWrap wrap, TextureFilter filter, void* data) {
+void OpenGlTexture2d::CreateTexture(int width, int height, int channels, TextureWrap wrap, TextureFilter filter, void* data) {
 	GLenum internal_format = 0, data_format = 0;
 
 	if (channels == 4) {
@@ -65,7 +65,7 @@ void OpenGlTexture::CreateTexture(int width, int height, int channels, TextureWr
 	glBindTexture(GL_TEXTURE_2D, last_tex);
 }
 
-void OpenGlTexture::CreateTexture(const TextureInfo& texture_info) {
+void OpenGlTexture2d::CreateTexture(const Texture2dInfo& texture_info) {
   int width, height, channels;
 	stbi_uc* data = nullptr;
 
@@ -77,17 +77,17 @@ void OpenGlTexture::CreateTexture(const TextureInfo& texture_info) {
 	stbi_image_free(data);
 }
 
-OpenGlTexture::OpenGlTexture(const std::string& path) {
-	TextureInfo texture_info;
+OpenGlTexture2d::OpenGlTexture2d(const std::string& path) {
+	Texture2dInfo texture_info;
 	texture_info.path = path;
 	CreateTexture(texture_info);
 }
 
-OpenGlTexture::OpenGlTexture(const TextureInfo& texture_info) {
+OpenGlTexture2d::OpenGlTexture2d(const Texture2dInfo& texture_info) {
   CreateTexture(texture_info);
 }
 
-OpenGlTexture::OpenGlTexture(const BlankTextureInfo& blank_texture_info) {
+OpenGlTexture2d::OpenGlTexture2d(const BlankTexture2dInfo& blank_texture_info) {
 	size_t data_size = (size_t)blank_texture_info.width * (size_t)blank_texture_info.height;
 	uint32_t* data = new uint32_t[data_size];
 	// TODO: Why is this backwards?
@@ -101,16 +101,12 @@ OpenGlTexture::OpenGlTexture(const BlankTextureInfo& blank_texture_info) {
 	delete[] data;
 }
 
-OpenGlTexture::~OpenGlTexture() {
+OpenGlTexture2d::~OpenGlTexture2d() {
   glDeleteTextures(1, &texture_);
 }
 
-void OpenGlTexture::Bind() const {
+void OpenGlTexture2d::Bind() const {
 	glBindTexture(GL_TEXTURE_2D, texture_);
-}
-
-bool OpenGlTexture::IsFrameBuffer() const {
-	return false;
 }
 
 }

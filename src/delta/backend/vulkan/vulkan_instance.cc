@@ -29,15 +29,15 @@ std::shared_ptr<FrameBuffer> VulkanInstance::CreateFrameBuffer(const FrameBuffer
   return nullptr;
 }
 
-std::shared_ptr<Texture> VulkanInstance::CreateTexture(const std::string& path) {
+std::shared_ptr<Texture2d> VulkanInstance::CreateTexture2d(const std::string& path) {
   return nullptr;
 }
 
-std::shared_ptr<Texture> VulkanInstance::CreateTexture(const TextureInfo& texture_info) {
+std::shared_ptr<Texture2d> VulkanInstance::CreateTexture2d(const Texture2dInfo& texture_info) {
   return nullptr;
 }
 
-std::shared_ptr<Texture> VulkanInstance::CreateTexture(const BlankTextureInfo& blank_texture_info) {
+std::shared_ptr<Texture2d> VulkanInstance::CreateTexture2d(const BlankTexture2dInfo& blank_texture_info) {
   return nullptr;
 }
 

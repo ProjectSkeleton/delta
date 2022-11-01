@@ -4,7 +4,7 @@
 #include "delta/backend/opengl/opengl_render_pass.hh"
 #include "delta/backend/opengl/opengl_mesh.hh"
 #include "delta/backend/opengl/opengl_shader.hh"
-#include "delta/backend/opengl/opengl_texture.hh"
+#include "delta/backend/opengl/opengl_texture_2d.hh"
 #include "delta/backend/opengl/opengl_window.hh"
 #include "delta/delta/utils/exceptions.hh"
 
@@ -30,16 +30,16 @@ std::shared_ptr<FrameBuffer> OpenGlInstance::CreateFrameBuffer(const FrameBuffer
   return std::make_shared<OpenGlFrameBuffer>(frame_buffer_info);
 }
 
-std::shared_ptr<Texture> OpenGlInstance::CreateTexture(const std::string& path) {
-  return std::make_shared<OpenGlTexture>(path);
+std::shared_ptr<Texture2d> OpenGlInstance::CreateTexture2d(const std::string& path) {
+  return std::make_shared<OpenGlTexture2d>(path);
 }
 
-std::shared_ptr<Texture> OpenGlInstance::CreateTexture(const TextureInfo& texture_info) {
-  return std::make_shared<OpenGlTexture>(texture_info);
+std::shared_ptr<Texture2d> OpenGlInstance::CreateTexture2d(const Texture2dInfo& texture_info) {
+  return std::make_shared<OpenGlTexture2d>(texture_info);
 }
 
-std::shared_ptr<Texture> OpenGlInstance::CreateTexture(const BlankTextureInfo& blank_texture_info) {
-  return std::make_shared<OpenGlTexture>(blank_texture_info);
+std::shared_ptr<Texture2d> OpenGlInstance::CreateTexture2d(const BlankTexture2dInfo& blank_texture_info) {
+  return std::make_shared<OpenGlTexture2d>(blank_texture_info);
 }
 
 }

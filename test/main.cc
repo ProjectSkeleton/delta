@@ -5,10 +5,10 @@ int main() {
   auto instance = Delta::CreateInstance();
   auto window = instance->CreateWindow();
 
-  Delta::TextureInfo pepper_texture_info;
+  Delta::Texture2dInfo pepper_texture_info;
   pepper_texture_info.filter = Delta::TextureFilter::kNearest;
   pepper_texture_info.path = "res/pepper.png";
-  auto pepper_texture = instance->CreateTexture(pepper_texture_info);
+  auto pepper_texture = instance->CreateTexture2d(pepper_texture_info);
 
   auto frame_buffer = instance->CreateFrameBuffer();
 
