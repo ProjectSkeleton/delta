@@ -23,6 +23,11 @@ protected:
 protected:
   ImmediateModeRenderPassCommandBuffer command_buffer_;
   RenderPassInfo render_pass_info_;
+
+private:
+  // Stop referenced objects going out of scope
+  std::vector<std::shared_ptr<Shader>> referenced_shaders_;
+  std::vector<std::shared_ptr<Mesh>> referenced_meshes_;
 };
 
 }

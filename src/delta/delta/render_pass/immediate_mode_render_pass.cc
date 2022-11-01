@@ -36,11 +36,13 @@ void ImmediateModeRenderPass::Execute() {
 void ImmediateModeRenderPass::RecordBindShaderCommand(const std::shared_ptr<Shader>& shader) {
   command_buffer_.Push(RenderPassOpcode::kBindShader);
   command_buffer_.Push(shader.get());
+  referenced_shaders_.push_back(shader);
 }
 
 void ImmediateModeRenderPass::RecordRenderMeshCommand(const std::shared_ptr<Mesh>& mesh) {
   command_buffer_.Push(RenderPassOpcode::kRenderMesh);
   command_buffer_.Push(mesh.get());
+  referenced_meshes_.push_back(mesh);
 }
 
 }

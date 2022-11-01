@@ -36,6 +36,11 @@ public:
 
   virtual void RecordBindShaderCommand(const std::shared_ptr<Shader>& shader) = 0;
   virtual void RecordRenderMeshCommand(const std::shared_ptr<Mesh>& mesh) = 0;
+
+// TODO
+// A render pass should be required to keep a list of referenced objects and they should not
+// go out of scope and be deleted so long as the render pass is using them
+// It should be enforced that all RenderPass implementations must implement this
 };
 
 }
