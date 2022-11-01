@@ -9,8 +9,6 @@
 
 namespace Delta {
 
-typedef std::function<void(unsigned int width, unsigned int height)> WindowResizeCallback;
-
 struct WindowInfo {
   size_t width = 1280;
   size_t height = 720;
@@ -22,8 +20,6 @@ class Window : public RenderTarget {
 public:
   virtual bool IsOpen() const = 0;
   virtual void PollEvents() = 0;
-
-  virtual void SetResizeCallback(WindowResizeCallback callback) = 0;
 };
 
 }

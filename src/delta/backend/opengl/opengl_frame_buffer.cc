@@ -69,6 +69,14 @@ void OpenGlFrameBuffer::Resize(unsigned int width, unsigned int height) {
   glBindRenderbuffer(GL_RENDERBUFFER, depth_attachment_);
   glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width_, height_);
   glBindRenderbuffer(GL_RENDERBUFFER, 0);
+
+  if (resize_callback_) {
+    resize_callback_(width_, height_);
+  }
+}
+
+void OpenGlFrameBuffer::SetResizeCallback(RenderTargetResizeCallback callback) {
+  resize_callback_ = callback;
 }
 
 void OpenGlFrameBuffer::BindColorAttachment() const {

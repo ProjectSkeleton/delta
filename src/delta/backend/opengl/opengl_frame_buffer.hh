@@ -15,6 +15,8 @@ public:
   virtual void OnRenderPassBegin(const RenderPassInfo& render_pass_info) override;
   virtual void OnRenderPassComplete(const RenderPassInfo& render_pass_info) override;
 
+  virtual void SetResizeCallback(RenderTargetResizeCallback callback) override;
+
 public:
   virtual void Resize(unsigned int width, unsigned int height) override;
 
@@ -28,6 +30,8 @@ private:
 
   int width_;
   int height_;
+
+  RenderTargetResizeCallback resize_callback_;
 };
 
 }

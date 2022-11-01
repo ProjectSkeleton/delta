@@ -11,7 +11,7 @@ void VulkanWindow::OnRenderPassBegin(const RenderPassInfo& render_pass_info) {
 void VulkanWindow::OnRenderPassComplete(const RenderPassInfo& render_pass_info) {
 }
 
-void VulkanWindow::SetResizeCallback(WindowResizeCallback callback) {
+void VulkanWindow::SetResizeCallback(RenderTargetResizeCallback callback) {
 }
 
 }

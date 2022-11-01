@@ -79,7 +79,7 @@ void OpenGlWindow::OnRenderPassComplete(const RenderPassInfo& render_pass_info) 
   }
 }
 
-void OpenGlWindow::SetResizeCallback(WindowResizeCallback callback) {
+void OpenGlWindow::SetResizeCallback(RenderTargetResizeCallback callback) {
   resize_callback_ = callback;
   int w, h;
   glfwGetFramebufferSize(glfw_window_, &w, &h);

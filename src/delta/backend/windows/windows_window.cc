@@ -18,7 +18,7 @@ void WindowsWindow::OnRenderPassBegin(const RenderPassInfo& render_pass_info) {
 void WindowsWindow::OnRenderPassComplete(const RenderPassInfo& render_pass_info) {
 }
 
-void WindowsWindow::SetResizeCallback(WindowResizeCallback callback) {
+void WindowsWindow::SetResizeCallback(RenderTargetResizeCallback callback) {
 }
 
 }
